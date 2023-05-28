@@ -8,5 +8,5 @@ app.include_router(router_deposit)
 
 
 if __name__ == "__main__":
-    uvicorn.run(app, host="localhost", port=5001)
+    uvicorn.run(app, host="127.0.0.1", port=80)
 
