@@ -6,12 +6,14 @@ from dateutil.relativedelta import relativedelta
 
 class Calculation:
     def __cal_interest(self, amount: int | float, rate: float) -> float:
+        """Рассчитывает сумму вместе с процентами по вкладу"""
         ratio: float = rate / 12 / 100 + 1
         result: float = amount * ratio
         amount: float = round(result, 2)
         return amount
 
     async def cal_date(self, data: dict) -> dict:
+        """Возвращает результат расчета по месяцам в виде словаря дата: сумма"""
         example = {}
         try:
             date_: date = datetime.strptime(data["date"], '%d.%m.%Y').date()
