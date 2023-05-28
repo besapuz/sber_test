@@ -5,13 +5,26 @@ from dateutil.relativedelta import relativedelta
 
 
 class Calculation:
-    async def calculates_interest(self, data: dict):
+    def __cal_interest(self, amount: int | float, rate: float) -> float:
+        ratio: float = rate / 12 / 100 + 1
+        result: float = amount * ratio
+        amount: float = round(result, 2)
+        return amount
+
+    async def cal_date(self, data: dict) -> dict:
+        example = {}
         try:
             date_: date = datetime.strptime(data["date"], '%d.%m.%Y').date()
-            mount = data["periods"]
+            mount: int = data["periods"]
+            cal: float = Calculation.__cal_interest(self, data["amount"], data["rate"])
             for i in range(mount):
-                day = date_ + relativedelta(months=+i+1)
-                logger.info(datetime.strptime(str(day), '%Y-%m-%d').strftime('%d.%m.%Y'))
+                next_mount: str = datetime.strptime(str(date_ + relativedelta(months=+i+1)), '%Y-%m-%d').strftime('%d.%m.%Y')
+                example[next_mount] = cal
+                cal: float = Calculation.__cal_interest(self, cal, data["rate"])
+            return example
         except Exception as error:
             logger.error(error)
+
+
+
 
