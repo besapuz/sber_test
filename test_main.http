@@ -1,11 +1,19 @@
 # Test your FastAPI endpoints
 
-GET http://127.0.0.1:8000/
+GET http://localhost:5001/deposit
 Accept: application/json
 
 ###
 
-GET http://127.0.0.1:8000/hello/User
+POST http://localhost:5001/deposit
 Accept: application/json
+Content-Type: application/json
+
+{
+  "date": "25.03.2023",
+  "periods": 5,
+  "amount": 3000000,
+  "rate": 8
+}
 
 ###

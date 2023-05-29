@@ -1,5 +1,5 @@
 from pydantic import BaseModel, Field, validator
-from datetime import datetime, date
+from datetime import datetime
 
 
 class DepositBase(BaseModel):
